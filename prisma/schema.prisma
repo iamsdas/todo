@@ -12,7 +12,7 @@ model Account {
   userId             String
   providerType       String
   providerId         String
-  providerAccountId  String
+  providerAccountId  Int
   refreshToken       String?
   accessToken        String?
   accessTokenExpires DateTime?
@@ -35,11 +35,18 @@ model Session {
 }
 
 model ListItem {
-  id        Int     @id @default(autoincrement())
+  id       Int       @id @default(autoincrement())
+  body     String?
+  listId   Int
+  TodoList TodoList? @relation(fields: [listId], references: [id])
+}
+
+model TodoList {
+  id        Int        @id @default(autoincrement())
   userEmail String?
   title     String?
-  body      String
-  User      User?   @relation(fields: [userEmail], references: [email])
+  listItems ListItem[]
+  User      User?      @relation(fields: [userEmail], references: [email])
 }
 
 model User {
@@ -52,7 +59,7 @@ model User {
   updatedAt     DateTime   @updatedAt
   accounts      Account[]
   sessions      Session[]
-  listItems     ListItem[]
+  todoLists     TodoList[]
 }
 
 model VerificationRequest {
