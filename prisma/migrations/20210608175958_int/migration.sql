@@ -4,7 +4,7 @@ CREATE TABLE "Account" (
     "userId" TEXT NOT NULL,
     "providerType" TEXT NOT NULL,
     "providerId" TEXT NOT NULL,
-    "providerAccountId" TEXT NOT NULL,
+    "providerAccountId" INTEGER NOT NULL,
     "refreshToken" TEXT,
     "accessToken" TEXT,
     "accessTokenExpires" TIMESTAMP(3),
@@ -30,9 +30,17 @@ CREATE TABLE "Session" (
 -- CreateTable
 CREATE TABLE "ListItem" (
     "id" SERIAL NOT NULL,
-    "userId" TEXT,
+    "body" TEXT,
+    "listId" INTEGER NOT NULL,
+
+    PRIMARY KEY ("id")
+);
+
+-- CreateTable
+CREATE TABLE "TodoList" (
+    "id" SERIAL NOT NULL,
+    "userEmail" TEXT,
     "title" TEXT,
-    "body" TEXT NOT NULL,
 
     PRIMARY KEY ("id")
 );
@@ -87,4 +95,7 @@ ALTER TABLE "Account" ADD FOREIGN KEY ("userId") REFERENCES "User"("id") ON DELE
 ALTER TABLE "Session" ADD FOREIGN KEY ("userId") REFERENCES "User"("id") ON DELETE CASCADE ON UPDATE CASCADE;
 
 -- AddForeignKey
-ALTER TABLE "ListItem" ADD FOREIGN KEY ("userId") REFERENCES "User"("id") ON DELETE SET NULL ON UPDATE CASCADE;
+ALTER TABLE "ListItem" ADD FOREIGN KEY ("listId") REFERENCES "TodoList"("id") ON DELETE CASCADE ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE "TodoList" ADD FOREIGN KEY ("userEmail") REFERENCES "User"("email") ON DELETE SET NULL ON UPDATE CASCADE;
