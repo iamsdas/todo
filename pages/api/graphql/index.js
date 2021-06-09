@@ -1,5 +1,5 @@
 import { ApolloServer, gql } from 'apollo-server-micro';
-import { prisma } from '../../../lib/prisma';
+import prisma from '../../../lib/prisma';
 
 const typeDefs = gql`
   type Item {
