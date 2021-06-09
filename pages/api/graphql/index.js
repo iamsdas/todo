@@ -11,14 +11,18 @@ const typeDefs = gql`
     title: String
     listItems: [Item]!
   }
+  type ListResponse {
+    id: Int!
+    title: String!
+  }
   type Query {
     lists(email: String): [List]!
   }
   type Mutation {
     addList(email: String!, title: String): List
     addItem(id: Int!, body: String): Item
-    updateList(id: Int!, title: String!): Int
-    updateItem(id: Int!, body: String!): Int
+    updateList(id: Int!, title: String!): ListResponse
+    updateItem(id: Int!, body: String!): Item
     deleteList(id: Int!): Int
     deleteItem(id: Int!): Int
   }
@@ -53,10 +57,6 @@ const resolvers = {
     },
     addItem: async (_, { id, body }, __, ___) => {
       const item = await prisma.listItem.create({
-        select: {
-          id: true,
-          body: true,
-        },
         data: {
           listId: id,
           body: body,
@@ -72,11 +72,8 @@ const resolvers = {
         data: {
           body: body,
         },
-        select: {
-          id: true,
-        },
       });
-      return item.id;
+      return item;
     },
     updateList: async (_, { id, title }, __, ___) => {
       const list = await prisma.todoList.update({
@@ -86,11 +83,8 @@ const resolvers = {
         data: {
           title: title,
         },
-        select: {
-          id: true,
-        },
       });
-      return list.id;
+      return list;
     },
     deleteItem: async (_, { id }, __, ___) => {
       const item = await prisma.listItem.delete({
