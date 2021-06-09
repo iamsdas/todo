@@ -1,5 +1,5 @@
 import 'tailwindcss/tailwind.css';
-import { ApolloProvider } from '@apollo/client';
+import { ApolloProvider, ApolloClient, InMemoryCache } from '@apollo/client';
 
 const client = new ApolloClient({
   uri: '/api/graphql',
