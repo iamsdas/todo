@@ -35,6 +35,9 @@ const resolvers = {
         where: {
           userEmail: email,
         },
+        orderBy: {
+          id: 'desc',
+        },
         include: {
           listItems: true,
         },
@@ -51,6 +54,9 @@ const resolvers = {
           listItems: {
             create: [],
           },
+        },
+        include: {
+          listItems: true,
         },
       });
       return list;
