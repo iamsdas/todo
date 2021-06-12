@@ -8,11 +8,14 @@ export default function Home() {
   const [session, loading] = useSession();
 
   if (loading) return <div>loading</div>;
-  if (!session && !loading) router.push('/api/auth/signin');
+  if (!session && !loading) {
+    router.push('/api/auth/signin');
+    return 'redirecting';
+  }
   if (session)
     return (
-      <div className='bg-gray-200'>
-        <div className='sm:w-2/5 mx-auto'>
+      <div className='bg-gradient-to-r from-gray-200 to-gray-300'>
+        <div className='sm:w-3/5 sm:px-14 mx-auto'>
           <Dashboard user={session.user} />
         </div>
       </div>
