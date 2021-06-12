@@ -1,5 +1,3 @@
-import React from 'react';
-
 const Loading = () => {
   return (
     <div className='space-y-8 animate-pulse min-h-screen'>

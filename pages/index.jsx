@@ -1,8 +1,7 @@
-import { signIn, useSession } from 'next-auth/client';
+import { useSession } from 'next-auth/client';
 import { useRouter } from 'next/router';
 import Dashboard from '../components/dashboard';
 import Loading from '../components/loading';
-import Navbar from '../components/navbar';
 
 export default function Home() {
   const router = useRouter();
