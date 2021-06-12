@@ -12,7 +12,7 @@ export default function Home() {
     return 'redirecting to signin page';
   }
   return (
-    <div className='bg-gradient-to-r from-gray-200 to-gray-300'>
+    <div className='min-h-screen bg-gradient-to-r from-gray-200 to-gray-300'>
       <div className='max-w-2xl mx-auto'>
         {loading ? <Loading /> : <Dashboard user={session.user} />}
       </div>
