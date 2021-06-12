@@ -3,6 +3,7 @@ import { useState } from 'react';
 import Item from './item';
 import Navbar from './navbar';
 import NewItem from './newItem';
+import Loading from './loading';
 
 const GET_LISTS = gql`
   query getLists($email: String!) {
@@ -57,7 +58,7 @@ const Dashboard = ({ user: { email, name, image } }) => {
     setNewTitle('');
   };
 
-  if (loading) return 'loading';
+  if (loading) return <Loading />;
   if (error) return 'error';
 
   return (
