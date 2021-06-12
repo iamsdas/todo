@@ -1,4 +1,4 @@
-import { useSession } from 'next-auth/client';
+import { useSession, signIn } from 'next-auth/client';
 import { useRouter } from 'next/router';
 import Dashboard from '../components/dashboard';
 import Loading from '../components/loading';
@@ -8,8 +8,8 @@ export default function Home() {
   const [session, loading] = useSession();
 
   if (!session && !loading) {
-    router.push('/api/auth/signin');
-    return 'redirecting';
+    signIn('github');
+    return 'redirecting to signin page';
   }
   return (
     <div className='bg-gradient-to-r from-gray-200 to-gray-300'>
