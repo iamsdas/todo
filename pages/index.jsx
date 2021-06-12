@@ -13,7 +13,7 @@ export default function Home() {
   }
   return (
     <div className='bg-gradient-to-r from-gray-200 to-gray-300'>
-      <div className='sm:w-3/5 sm:px-14 mx-auto'>
+      <div className='max-w-2xl mx-auto'>
         {loading ? <Loading /> : <Dashboard user={session.user} />}
       </div>
     </div>

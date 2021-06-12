@@ -10,7 +10,20 @@ const ADD_ITEM = gql`
   }
 `;
 
-const NewItem = ({ id }) => {
+const GET_LISTS = gql`
+  query getLists($email: String!) {
+    lists(email: $email) {
+      id
+      title
+      listItems {
+        id
+        body
+      }
+    }
+  }
+`;
+
+const NewItem = ({ id, email }) => {
   const [addItem] = useMutation(ADD_ITEM);
   const [newBody, setNewBody] = useState('');
 
@@ -39,7 +52,7 @@ const NewItem = ({ id }) => {
         });
       },
     });
-    setNewBody('');
+    setNewBody(' ');
   };
 
   return (
@@ -49,6 +62,7 @@ const NewItem = ({ id }) => {
           type='text'
           className='w-full p-2 text-lg text-gray-800 border-2 border-gray-300 hover:border-gray-400 bg-gray-100'
           placeholder='add new item'
+          value={newBody}
           onChange={(e) => setNewBody(e.target.value)}
         />
       </div>

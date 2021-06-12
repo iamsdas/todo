@@ -83,7 +83,7 @@ const Dashboard = ({ user: { email, name, image } }) => {
               <Item key={item.id} body={item.body} id={item.id} />
             ))}
             <div className='pt-5'>
-              <NewItem id={list.id} />
+              <NewItem id={list.id} email={email} />
             </div>
           </div>
         ))}
