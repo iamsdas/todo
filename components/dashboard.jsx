@@ -62,7 +62,7 @@ const Dashboard = ({ user: { email, name, image } }) => {
   if (error) return 'error';
 
   return (
-    <div>
+    <div class='bg-gray-800 sm:border-8 border-gray-800'>
       <Navbar name={name} image={image} />
       <div className='py-5 space-y-8'>
         <form onSubmit={addListHandler} className='px-2 sm:px-0'>
