@@ -1,5 +1,7 @@
 import { useState } from 'react';
 import { gql, useMutation } from '@apollo/client';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faTrash } from '@fortawesome/free-solid-svg-icons';
 
 const UPDATE_ITEM = gql`
   mutation updateItem($id: Int!, $body: String!) {
@@ -49,7 +51,7 @@ const Item = ({ body, id }) => {
             },
           });
         }}>
-        del
+        <FontAwesomeIcon icon={faTrash} />
       </button>
     </div>
   );

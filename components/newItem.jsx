@@ -1,5 +1,7 @@
 import { gql, useMutation } from '@apollo/client';
 import { useState } from 'react';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faPlus } from '@fortawesome/free-solid-svg-icons';
 
 const ADD_ITEM = gql`
   mutation addItem($id: Int!, $body: String!) {
@@ -69,7 +71,7 @@ const NewItem = ({ id, email }) => {
       <button
         type='submit'
         className='py-2 w-20 text-white bg-purple-600 hover:bg-purple-700 text-lg text-center'>
-        ADD
+        <FontAwesomeIcon icon={faPlus} />
       </button>
     </form>
   );
