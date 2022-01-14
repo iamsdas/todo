@@ -1,11 +1,10 @@
-import { useSession, signIn } from 'next-auth/client';
-import { useRouter } from 'next/router';
+import { useSession, signIn } from 'next-auth/react';
 import Dashboard from '../components/dashboard';
 import Loading from '../components/loading';
 
 export default function Home() {
-  const router = useRouter();
-  const [session, loading] = useSession();
+  const { data: session, status } = useSession();
+  const loading = status === 'loading';
 
   if (!session && !loading) {
     signIn('github');
